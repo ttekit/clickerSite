@@ -30,6 +30,9 @@ public class Client {
     @Column(length = 70, nullable = false, unique = true)
     private String email;
     private LocalDate birthdate;
+    @Column(nullable = false)
+    private Gender gender;
+
     @OneToOne
     private Address address;
     @OneToMany(mappedBy = "client")

@@ -19,15 +19,17 @@ public class Address {
     @Column(length = 50, nullable = false)
     private String country;
     @Column(length = 50, nullable = false)
+    private String region;
+    @Column(length = 70, nullable = false)
+    private String district;
+    @Column(length = 50, nullable = false)
     private String city;
-    @Column(length = 50, nullable = false)
+    @Column(length = 70, nullable = false)
     private String street;
-    @Column(length = 50, nullable = false)
+    @Column(length = 70, nullable = false)
     private String house;
     @Column(length = 50, nullable = false)
-    private String flat;
-    @Column(length = 50, nullable = false)
-    private String addInfo;
+    private String apartment;
 
     @OneToOne(mappedBy = "address")
     private Client client;

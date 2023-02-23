@@ -18,7 +18,9 @@ public class Account {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private Integer money;
+    @Column(nullable = false, columnDefinition = "Decimal(10) default '0'")
+    private Integer amount = 0;
+    @Column(nullable = false)
     private Role role;
     @ManyToMany
     private List<Client> clients;
