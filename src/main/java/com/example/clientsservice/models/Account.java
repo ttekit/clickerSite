@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,9 +20,12 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @Column(nullable = false, columnDefinition = "Decimal(10) default '0'")
-    private Integer amount = 0;
+    private Integer amount;
     @Column(nullable = false)
+    @ToString.Exclude
     private Role role;
-    @ManyToMany
-    private List<Client> clients;
+    @ManyToMany(mappedBy = "accounts")
+    @ToString.Exclude
+    private Set<Client> clients;
 }
+

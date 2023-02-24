@@ -32,5 +32,6 @@ public class Address {
     private String apartment;
 
     @OneToOne(mappedBy = "address")
+    @ToString.Exclude
     private Client client;
 }
