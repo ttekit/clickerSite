@@ -2,7 +2,6 @@ package com.example.clientsservice.models;
 
 import lombok.*;
 
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
@@ -47,4 +46,58 @@ public class Client {
     )
     @ToString.Exclude
     private Set<Account> accounts;
+
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Client)) return false;
+        final Client other = (Client) o;
+        if (!other.canEqual((Object) this)) return false;
+        final Object this$Id = this.getId();
+        final Object other$Id = other.getId();
+        if (this$Id == null ? other$Id != null : !this$Id.equals(other$Id)) return false;
+        final Object this$name = this.getName();
+        final Object other$name = other.getName();
+        if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
+        final Object this$surname = this.getSurname();
+        final Object other$surname = other.getSurname();
+        if (this$surname == null ? other$surname != null : !this$surname.equals(other$surname)) return false;
+        final Object this$patronymic = this.getPatronymic();
+        final Object other$patronymic = other.getPatronymic();
+        if (this$patronymic == null ? other$patronymic != null : !this$patronymic.equals(other$patronymic))
+            return false;
+        final Object this$email = this.getEmail();
+        final Object other$email = other.getEmail();
+        if (this$email == null ? other$email != null : !this$email.equals(other$email)) return false;
+        final Object this$birthdate = this.getBirthdate();
+        final Object other$birthdate = other.getBirthdate();
+        if (this$birthdate == null ? other$birthdate != null : !this$birthdate.equals(other$birthdate)) return false;
+        final Object this$gender = this.getGender();
+        final Object other$gender = other.getGender();
+        if (this$gender == null ? other$gender != null : !this$gender.equals(other$gender)) return false;
+        return true;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Client;
+    }
+
+    public int hashCode() {
+        final int PRIME = 59;
+        int result = 1;
+        final Object $Id = this.getId();
+        result = result * PRIME + ($Id == null ? 43 : $Id.hashCode());
+        final Object $name = this.getName();
+        result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+        final Object $surname = this.getSurname();
+        result = result * PRIME + ($surname == null ? 43 : $surname.hashCode());
+        final Object $patronymic = this.getPatronymic();
+        result = result * PRIME + ($patronymic == null ? 43 : $patronymic.hashCode());
+        final Object $email = this.getEmail();
+        result = result * PRIME + ($email == null ? 43 : $email.hashCode());
+        final Object $birthdate = this.getBirthdate();
+        result = result * PRIME + ($birthdate == null ? 43 : $birthdate.hashCode());
+        final Object $gender = this.getGender();
+        result = result * PRIME + ($gender == null ? 43 : $gender.hashCode());
+        return result;
+    }
 }

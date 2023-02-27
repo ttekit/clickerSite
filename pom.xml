@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>clients</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>test213</name>
+	<name>ClientsService</name>
 	<description>ClientsService</description>
 	<properties>
 		<java.version>19</java.version>
