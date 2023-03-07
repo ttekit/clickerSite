@@ -1,4 +1,4 @@
-package com.example.clientsservice;
+package com.example.clientsservice.models.enums;
 
 public enum Role {
     INTERN,

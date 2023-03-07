@@ -1,9 +1,6 @@
 package com.example.clientsservice.services.data.db;
 
-import com.example.clientsservice.Role;
-import com.example.clientsservice.data.AccountService;
-import com.example.clientsservice.data.AddressService;
-import com.example.clientsservice.models.Account;
+import com.example.clientsservice.services.AddressService;
 import com.example.clientsservice.models.Address;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

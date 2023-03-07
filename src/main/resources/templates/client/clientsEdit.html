@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="formDiv">
+    <!--            /*@thymesVar id="clients" type="List<com.example.clientsservice.model.Client>"*/-->
+    <form th:action="@{/updateClientForm}" method="post" th:object="${client}">
+        <input name="Id" type="hidden" th:value="*{id}">
+        <div class="form-group col-md-6">
+            <label>Name</label>
+            <input name="name" type="text" class="form-control" th:value="*{name}">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Surname</label>
+            <input name="surname" type="text" class="form-control" placeholder="Surname" th:value="*{surname}">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Patronymic</label>
+            <input name="patronymic" type="text" class="form-control" placeholder="Patronymic" th:value="*{patronymic}">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Email</label>
+            <input name="email" type="email" class="form-control" placeholder="Email" th:value="*{email}">
+        </div>
+        <div class="form-group col-md-6">
+            <label>BirthDate</label>
+            <input type="date" class="form-control" placeholder="date" name="birthdate"
+                   th:value="*{birthdate}" min="1900-01-01" max="2023-05-05">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">Gender</label>
+            <!--/*@thymesVar id="genders" type="String"*/-->
+            <select name="gender" id="inputState" class="form-control">
+                <option th:each="gender:${genders}"
+                        th:utext="${gender}"
+                        th:value="${gender}"
+                        th:selected="${gender==client.gender.toString()}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save to DB</button>
+    </form>
+</div>
+</body>
+</html>

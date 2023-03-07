@@ -1,6 +1,8 @@
 package com.example.clientsservice.models;
 
+import com.example.clientsservice.models.enums.Gender;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,9 +28,8 @@ public class Client {
     private String patronymic;
     @Column(length = 70, nullable = false, unique = true)
     private String email;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
-    @Column(nullable = false)
-    @ToString.Exclude
     private Gender gender;
 
     @OneToOne
@@ -37,8 +38,6 @@ public class Client {
     @OneToMany(mappedBy = "client")
     @ToString.Exclude
     private Set<Phone> phones;
-
-
     @ManyToMany
     @JoinTable(name = "clients_amounts",
             joinColumns = @JoinColumn(table = "clients"),
@@ -71,9 +70,6 @@ public class Client {
         final Object this$birthdate = this.getBirthdate();
         final Object other$birthdate = other.getBirthdate();
         if (this$birthdate == null ? other$birthdate != null : !this$birthdate.equals(other$birthdate)) return false;
-        final Object this$gender = this.getGender();
-        final Object other$gender = other.getGender();
-        if (this$gender == null ? other$gender != null : !this$gender.equals(other$gender)) return false;
         return true;
     }
 
@@ -96,8 +92,6 @@ public class Client {
         result = result * PRIME + ($email == null ? 43 : $email.hashCode());
         final Object $birthdate = this.getBirthdate();
         result = result * PRIME + ($birthdate == null ? 43 : $birthdate.hashCode());
-        final Object $gender = this.getGender();
-        result = result * PRIME + ($gender == null ? 43 : $gender.hashCode());
         return result;
     }
 }

@@ -1,11 +1,8 @@
 package com.example.clientsservice.services.data.db;
 
-import com.example.clientsservice.Role;
-import com.example.clientsservice.data.AccountService;
-import com.example.clientsservice.data.ClientService;
+import com.example.clientsservice.models.enums.Role;
+import com.example.clientsservice.services.AccountService;
 import com.example.clientsservice.models.Account;
-import com.example.clientsservice.models.Client;
-import com.example.clientsservice.models.Gender;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -13,7 +10,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

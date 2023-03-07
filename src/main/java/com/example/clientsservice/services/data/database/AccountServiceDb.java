@@ -1,15 +1,16 @@
-package com.example.clientsservice.data.database;
+package com.example.clientsservice.services.data.database;
 
-import com.example.clientsservice.data.AccountService;
+import com.example.clientsservice.services.AccountService;
 import com.example.clientsservice.models.Account;
 import com.example.clientsservice.repositories.AccountRepository;
-import com.example.clientsservice.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Primary
 public class AccountServiceDb implements AccountService {
     @Autowired
     private AccountRepository accountRepository;

@@ -1,9 +1,7 @@
 package com.example.clientsservice.services.data.db;
 
-import com.example.clientsservice.data.PhoneService;
-import com.example.clientsservice.models.Account;
+import com.example.clientsservice.services.PhoneService;
 import com.example.clientsservice.models.Phone;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -25,29 +23,32 @@ public class PhoneServiceDbTest {
 
     @Test
     @Order(1)
-    void save(){
+    void save() {
         saved = phoneService.save(source);
         System.out.println(saved);
 
         assertNotNull(saved);
         source = saved;
     }
+
     @Test
     @Order(2)
-    void findById(){
+    void findById() {
         saved = phoneService.findById(source.getId());
         assertNotNull(saved);
         source = saved;
     }
+
     @Test
     @Order(3)
-    void findAll(){
+    void findAll() {
         List<Phone> phones = phoneService.findAll();
         assertNotNull(phones);
     }
+
     @Test
     @Order(4)
-    void remove(){
+    void remove() {
         phoneService.deleteById(source.getId());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.clientsservice.data;
+package com.example.clientsservice.services;
 
 import com.example.clientsservice.models.Client;
 
@@ -8,6 +8,7 @@ public interface ClientService{
     Client save(Client client);
     Client findById(Integer id);
     void deleteById(Integer id);
-
+    void saveAll(List<Client> clients);
+    void updateClient(Client client);
     List<Client> findAll();
 }

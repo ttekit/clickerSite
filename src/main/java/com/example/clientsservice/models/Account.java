@@ -1,10 +1,9 @@
 package com.example.clientsservice.models;
 
-import com.example.clientsservice.Role;
+import com.example.clientsservice.models.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Getter

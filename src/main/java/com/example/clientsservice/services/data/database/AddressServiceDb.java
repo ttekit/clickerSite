@@ -1,6 +1,6 @@
-package com.example.clientsservice.data.database;
+package com.example.clientsservice.services.data.database;
 
-import com.example.clientsservice.data.AddressService;
+import com.example.clientsservice.services.AddressService;
 import com.example.clientsservice.models.Address;
 import com.example.clientsservice.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="clientForm">
+    <!--/*@thymesVar id="client" type="com.example.clientsservice.models.Client"*/-->
+    <form th:action="@{/addClientForm}" method="post" th:object="${client}">
+        <div class="form-group col-md-6">
+            <label>Name</label>
+            <input name="name" type="text" class="form-control" placeholder="Name">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Surname</label>
+            <input name="surname" type="text" class="form-control" placeholder="Surname">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Patronymic</label>
+            <input name="patronymic" type="text" class="form-control" placeholder="Patronymic">
+        </div>
+        <div class="form-group col-md-6">
+            <label>Email</label>
+            <input name="email" type="email" class="form-control" placeholder="Email">
+        </div>
+        <div class="form-group col-md-6">
+            <label>BirthDate</label>
+            <input type="date" class="form-control" placeholder="date" name="birthdate"
+                   min="1900-01-01" max="2023-05-05">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">Gender</label>
+            <!--/*@thymesVar id="genders" type="String"*/-->
+            <select name="gender" id="inputState" class="form-control">
+                <option th:each="gender:${genders}" th:utext="${gender}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save to DB</button>
+    </form>
+</div>
+<div class="clientsTable">
+    <div class="clients">
+        <table class="clients-table border-0 m-2 w-auto text-center align-content-center">
+            <tr>
+                <th class="m-2">Id</th>
+                <th class="m-2">Name</th>
+                <th class="m-2">Surname</th>
+                <th class="m-2">Patronymic</th>
+                <th class="m-2">Email</th>
+                <th class="m-2">Gender</th>
+                <th class="m-2">BirthDate</th>
+                <th class="m-2">Action</th>
+            </tr>
+            <tbody class="clients-table-body">
+            <!--            /*@thymesVar id="clients" type="List<com.example.clientsservice.model.Client>"*/-->
+            <tr th:each="client:${clients}">
+                <td th:utext="${client.Id}"></td>
+                <td th:utext="${client.name}"></td>
+                <td th:utext="${client.surname}"></td>
+                <td th:utext="${client.patronymic}"></td>
+                <td th:utext="${client.email}"></td>
+                <td th:utext="${client.gender}"></td>
+                <td th:utext="${client.birthdate}"></td>
+                <td>
+                    <a th:href='@{/clients/edit(id=${client.Id})}'>EDIT</a>
+                    <a th:href='@{/clientsDelete(id=${client.Id})}'>DELETE</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

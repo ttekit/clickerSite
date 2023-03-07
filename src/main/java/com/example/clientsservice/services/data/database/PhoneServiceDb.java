@@ -1,7 +1,6 @@
-package com.example.clientsservice.data.database;
+package com.example.clientsservice.services.data.database;
 
 import com.example.clientsservice.models.Phone;
-import com.example.clientsservice.repositories.AccountRepository;
 import com.example.clientsservice.repositories.PhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PhoneService implements com.example.clientsservice.data.PhoneService {
+public class PhoneServiceDb implements com.example.clientsservice.services.PhoneService {
     @Autowired
     private PhoneRepository phoneRepository;
 

@@ -1,4 +1,4 @@
-package com.example.clientsservice.data;
+package com.example.clientsservice.services;
 
 import com.example.clientsservice.models.Phone;
 

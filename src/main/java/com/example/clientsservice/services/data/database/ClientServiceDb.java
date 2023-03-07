@@ -1,12 +1,13 @@
-package com.example.clientsservice.data.database;
+package com.example.clientsservice.services.data.database;
 
-import com.example.clientsservice.data.ClientService;
+import com.example.clientsservice.services.ClientService;
 import com.example.clientsservice.models.Client;
 import com.example.clientsservice.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class ClientServiceDb implements ClientService {
@@ -24,6 +25,16 @@ public class ClientServiceDb implements ClientService {
     }
     public void deleteById(Integer id){
         clientRepository.deleteById(id);
+    }
+
+    @Override
+    public void saveAll(List<Client> clients) {
+        clientRepository.saveAll(clients);
+    }
+
+    @Override
+    public void updateClient(Client client) {
+            clientRepository.save(client);
     }
 
     @Override
