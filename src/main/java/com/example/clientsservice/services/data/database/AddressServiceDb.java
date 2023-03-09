@@ -31,4 +31,9 @@ public class AddressServiceDb implements AddressService {
     public List<Address> findAll() {
         return addressRepository.findAll();
     }
+
+    @Override
+    public void saveAll(List<Address> addresses) {
+        addressRepository.saveAll(addresses);
+    }
 }

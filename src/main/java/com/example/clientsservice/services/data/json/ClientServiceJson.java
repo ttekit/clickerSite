@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.clientsservice.devdep.Logger.printInfo;
 
@@ -38,6 +39,12 @@ public class ClientServiceJson implements ClientService {
 
     @Override
     public Client findById(Integer id) {
+        List<Client> clientList = findAll();
+        for (Client client : clientList) {
+            if (Objects.equals(client.getId(), id)) {
+                return client;
+            }
+        }
         return null;
     }
 

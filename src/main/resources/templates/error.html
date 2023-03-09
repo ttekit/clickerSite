@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="/css/errorpage.css">
+</head>
+<body>
+<div class="not-found parallax">
+    <div class="sky-bg"></div>
+    <div class="wave-7"></div>
+    <div class="wave-6"></div>
+    <a class="wave-island" href="/">
+        <img src="http://res.cloudinary.com/andrewhani/image/upload/v1524501929/404/island.svg" alt="Island">
+    </a>
+    <div class="wave-5"></div>
+<!--    <h1 th:utext="${status.length()}"></h1>-->
+    /*@thymesVar id="status" type="String"*/
+    <div class="wave-lost wrp">
+        <span th:each="char : ${status.toCharArray()}" th:utext="${char}"></span>
+    </div>
+    <div class="wave-4"></div>
+    <div class="wave-boat">
+        <img class="boat" src="http://res.cloudinary.com/andrewhani/image/upload/v1524501894/404/boat.svg" alt="Boat">
+    </div>
+    <div class="wave-3"></div>
+    <div class="wave-2"></div>
+    <div class="wave-1"></div>
+    <div class="wave-message">
+        <p>Your're lost</p>
+        <p>Click on the island to return</p>
+        <h6 th:utext="${message}"></h6>
+        <h6 th:utext="${timestamp}"></h6>
+        <h6 th:utext="${status}"></h6>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="/js/errorpage.js"></script>
+</body>
+</html>

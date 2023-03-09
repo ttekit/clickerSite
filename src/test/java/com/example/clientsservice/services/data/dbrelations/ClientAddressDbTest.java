@@ -22,7 +22,7 @@ public class ClientAddressDbTest {
     @Autowired
     AddressService addressService;
 
-    static Client client = new Client(0, "Tester", "tester", "tester", "tester@tester.dddtester", LocalDate.now(), Gender.IDE, null, null, null);
+    static Client client = new Client(0, "Tester", "tester", "tester", "tester@tester.ddddftester", LocalDate.now(), Gender.IDE, null, null, null);
     static Address address = new Address(0, "Ukraine", "Idk", "Idk", "Testeria", "testeria", "-2", "0", null);
 
     @Test

@@ -33,4 +33,9 @@ public class AccountServiceDb implements AccountService {
     public List<Account> findAll() {
         return accountRepository.findAll();
     }
+
+    @Override
+    public void saveAll(List<Account> addresses) {
+
+    }
 }

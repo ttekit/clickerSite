@@ -32,4 +32,9 @@ public class PhoneServiceDb implements com.example.clientsservice.services.Phone
     public List<Phone> findAll() {
          return phoneRepository.findAll();
     }
+
+    @Override
+    public void saveAll(List<Phone> phones) {
+        phoneRepository.saveAll(phones);
+    }
 }

@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <th:block th:replace="components/head.html :: head"></th:block>
 </head>
 <body>
-<div th:replace="components/header.html :: header"></div>
-<div id="clientForm">
-    <!--/*@thymesVar id="client" type="com.example.clientsservice.models.Client"*/-->
-    <form th:action="@{/addClientForm}" method="post" th:object="${client}">
+<div id="accountsForm">
+    <!--/*@thymesVar id="client" type="com.example.clientsservice.models.Account"*/-->
+    <form th:action="@{/addAccountForm}" method="post" th:object="${account}">
         <div class="form-group col-md-6">
             <label>Name</label>
             <input name="name" type="text" class="form-control" placeholder="Name">
@@ -41,7 +39,7 @@
         <button type="submit" class="btn btn-primary">Save to DB</button>
     </form>
 </div>
-<div class="clientsTable">
+<div class="accountsTable">
     <div class="clients">
         <table class="clients-table border-0 m-2 w-auto text-center align-content-center">
             <tr>

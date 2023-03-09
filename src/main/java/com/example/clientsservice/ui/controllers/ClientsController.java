@@ -5,9 +5,12 @@ import com.example.clientsservice.models.enums.Gender;
 import com.example.clientsservice.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.spring5.view.ThymeleafView;
 
 import java.util.List;
 
@@ -20,6 +23,18 @@ public class ClientsController {
     @Qualifier("clientServiceDb")
     ClientService clientService;
 
+
+
+    @Bean(name="content-part")
+    @Scope("prototype")
+    public ThymeleafView clientsViewBean() {
+        printInFixColor("CLIENTS VIEW BEEN WORKED");
+        ThymeleafView view = new ThymeleafView("index"); // templateName = 'index'
+        view.setMarkupSelector("content");
+        return view;
+    }
+
+
     @GetMapping("/clients")
     String load(Model model) {
         printInfo("CLIENTS PAGE");
@@ -28,8 +43,9 @@ public class ClientsController {
         String[] genders = Gender.getNames(Gender.class);
         model.addAttribute("clients", clientList);
         model.addAttribute("genders", genders);
-        //return "/client/clients";
-        return "/client/mustache/clients";
+
+        return "/client/clients";
+        //return "/client/mustache/clients";
     }
 
     @GetMapping("/clients/edit")
@@ -40,8 +56,8 @@ public class ClientsController {
         String[] genders = Gender.getNames(Gender.class);
         model.addAttribute("client", clientList);
         model.addAttribute("genders", genders);
-        return "/client/mustache/clientsEdit";
-        //return "/client/clientsEdit";
+        //return "/client/mustache/clientsEdit";
+        return "/client/clientsEdit";
     }
 
 

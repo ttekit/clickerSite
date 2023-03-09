@@ -10,4 +10,5 @@ public interface PhoneService {
     void deleteById(Integer id);
 
     List<Phone> findAll();
+    void saveAll(List<Phone> phones);
 }
