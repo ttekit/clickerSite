@@ -1,12 +1,16 @@
 package com.example.clientsservice.models;
 
 import com.example.clientsservice.models.enums.Gender;
+import com.example.clientsservice.services.ClientService;
+import com.example.clientsservice.services.data.database.ClientServiceDb;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
+
+import static com.example.clientsservice.devdep.Logger.printInFixColor;
 
 @Getter
 @Setter
@@ -93,5 +97,18 @@ public class Client {
         final Object $birthdate = this.getBirthdate();
         result = result * PRIME + ($birthdate == null ? 43 : $birthdate.hashCode());
         return result;
+    }
+
+    public Client(String id) {
+        ClientService clientService = new ClientServiceDb();
+        Client toCopy = clientService.findById(Integer.getInteger(id));
+        printInFixColor(toCopy);
+        this.setId(toCopy.getId());
+        this.setName(toCopy.getName());
+        this.setSurname(toCopy.getSurname());
+        this.setEmail(toCopy.getEmail());
+        this.setBirthdate(toCopy.getBirthdate());
+        this.setGender(toCopy.getGender());
+        this.setPatronymic(toCopy.getPatronymic());
     }
 }

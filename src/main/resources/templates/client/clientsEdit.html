@@ -2,46 +2,91 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit client</title>
+    <th:block th:replace="components/head.html :: head"></th:block>
+
 </head>
 <body>
-<div class="formDiv">
-    <!--            /*@thymesVar id="clients" type="List<com.example.clientsservice.model.Client>"*/-->
-    <form th:action="@{/updateClientForm}" method="post" th:object="${client}">
-        <input name="Id" type="hidden" th:value="*{id}">
-        <div class="form-group col-md-6">
-            <label>Name</label>
-            <input name="name" type="text" class="form-control" th:value="*{name}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Surname</label>
-            <input name="surname" type="text" class="form-control" placeholder="Surname" th:value="*{surname}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Patronymic</label>
-            <input name="patronymic" type="text" class="form-control" placeholder="Patronymic" th:value="*{patronymic}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>Email</label>
-            <input name="email" type="email" class="form-control" placeholder="Email" th:value="*{email}">
-        </div>
-        <div class="form-group col-md-6">
-            <label>BirthDate</label>
-            <input type="date" class="form-control" placeholder="date" name="birthdate"
-                   th:value="*{birthdate}" min="1900-01-01" max="2023-05-05">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="inputState">Gender</label>
-            <!--/*@thymesVar id="genders" type="String"*/-->
-            <select name="gender" id="inputState" class="form-control">
-                <option th:each="gender:${genders}"
-                        th:utext="${gender}"
-                        th:value="${gender}"
-                        th:selected="${gender==client.gender.toString()}"></option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Save to DB</button>
-    </form>
+<div th:replace="components/header.html :: header"></div>
+<div class="save-data-forms-container row">
+    <div class="form-container">
+        <!--            /*@thymesVar id="clients" type="List<com.example.clientsservice.model.Client>"*/-->
+        <form th:action="@{/updateClientForm}" method="post" th:object="${client}">
+            <input class="user-id" name="Id" type="hidden" th:value="*{id}">
+            <input class="account" name="address" type="hidden" th:value="${address.id}">
+            <div class="form-group col-md-6">
+                <label>Name</label>
+                <input name="name" type="text" class="form-control" th:value="*{name}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Surname</label>
+                <input name="surname" type="text" class="form-control" placeholder="Surname" th:value="*{surname}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Patronymic</label>
+                <input name="patronymic" type="text" class="form-control" placeholder="Patronymic"
+                       th:value="*{patronymic}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Email</label>
+                <input name="email" type="email" class="form-control" placeholder="Email" th:value="*{email}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>BirthDate</label>
+                <input type="date" class="form-control" placeholder="date" name="birthdate"
+                       th:value="*{birthdate}" min="1900-01-01" max="2023-05-05">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">Gender</label>
+                <!--/*@thymesVar id="genders" type="String"*/-->
+                <select name="gender" id="inputState" class="form-control">
+                    <option th:each="gender:${genders}"
+                            th:utext="${gender}"
+                            th:value="${gender}"
+                            th:selected="${gender==client.gender.toString()}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save to DB</button>
+        </form>
+    </div>
+    <div class="address-form-container">
+        <!--            /*@thymesVar id="clients" type="List<com.example.clientsservice.models.Address>"*/-->
+        <form th:action="@{/clients/updateClientAddress}" method="post" th:object="${address}">
+            <input class="id" name="Id" type="hidden" th:value="*{Id}">
+            <input class="user" name="client" type="hidden" th:value="${client.id}">
+            <div class="form-group col-md-6">
+                <label>Country</label>
+                <input name="country" class="form-control" th:value="*{country}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Region</label>
+                <input name="region" class="form-control" placeholder="region" th:value="*{region}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>District</label>
+                <input name="district" class="form-control" placeholder="district" th:value="*{district}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>City</label>
+                <input name="city" class="form-control" placeholder="city" th:value="*{city}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Street</label>
+                <input name="street" class="form-control" placeholder="street" th:value="*{street}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>House</label>
+                <input name="house" class="form-control" placeholder="house" th:value="*{house}">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Apartment</label>
+                <input name="apartment" class="form-control" placeholder="apartment" th:value="*{apartment}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save address to DB</button>
+        </form>
+    </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </body>
 </html>

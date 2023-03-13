@@ -1,5 +1,7 @@
 package com.example.clientsservice.models;
 
+import com.example.clientsservice.services.ClientService;
+import com.example.clientsservice.services.data.database.ClientServiceDb;
 import lombok.*;
 
 import javax.persistence.*;

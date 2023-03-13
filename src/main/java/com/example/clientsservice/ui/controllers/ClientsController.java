@@ -1,8 +1,11 @@
 package com.example.clientsservice.ui.controllers;
 
+import com.example.clientsservice.models.Address;
 import com.example.clientsservice.models.Client;
 import com.example.clientsservice.models.enums.Gender;
+import com.example.clientsservice.services.AddressService;
 import com.example.clientsservice.services.ClientService;
+import com.example.clientsservice.services.data.database.AddressServiceDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -22,10 +25,12 @@ public class ClientsController {
     @Autowired
     @Qualifier("clientServiceDb")
     ClientService clientService;
+    @Autowired
+    @Qualifier("addressServiceDb")
+    AddressService addressService;
 
 
-
-    @Bean(name="content-part")
+    @Bean(name = "content-part")
     @Scope("prototype")
     public ThymeleafView clientsViewBean() {
         printInFixColor("CLIENTS VIEW BEEN WORKED");
@@ -51,13 +56,27 @@ public class ClientsController {
     @GetMapping("/clients/edit")
     String edit(Model model, @RequestParam("id") Integer id) {
         printInfo("EDIT CLIENT PAGE");
-        Client clientList = clientService.findById(id);
+        Client client = clientService.findById(id);
 
         String[] genders = Gender.getNames(Gender.class);
-        model.addAttribute("client", clientList);
+        model.addAttribute("client", client);
+        model.addAttribute("address", (client.getAddress() == null ? new Address() : client.getAddress()));
         model.addAttribute("genders", genders);
         //return "/client/mustache/clientsEdit";
         return "/client/clientsEdit";
+    }
+
+    @PostMapping("/clients/updateClientAddress")
+    String edit(@ModelAttribute("address") Address address) {
+        printInFixColor(address);
+        printInFixColor(address.getClient());
+        Client client = address.getClient();
+        address.setClient(null);
+        client.setAddress(address);
+
+        addressService.save(address);
+        clientService.save(client);
+        return "redirect:/clients";
     }
 
 
@@ -69,6 +88,7 @@ public class ClientsController {
 
         return "redirect:/clients";
     }
+
     @PostMapping("updateClientForm")
     String updateClientForm(@ModelAttribute("client") Client client) {
         printInfo("UPDATE CLIENT FORM");
@@ -78,6 +98,7 @@ public class ClientsController {
         clientService.updateClient(client);
         return "redirect:/clients";
     }
+
     @GetMapping("clientsDelete")
     String deleteClient(@RequestParam Integer id) {
         printInfo("DELETE CLIENT");
