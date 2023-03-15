@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:replace="components/head.html :: head"></th:block>
 </head>
 <body>
 <div id="accountsForm">
+    <div th:replace="components/header.html :: header"></div>
+
     <!--/*@thymesVar id="client" type="com.example.clientsservice.models.Account"*/-->
     <form th:action="@{/addAccountForm}" method="post" th:object="${account}">
         <div class="form-group col-md-6">
