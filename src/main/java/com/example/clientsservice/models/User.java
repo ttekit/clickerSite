@@ -26,7 +26,7 @@ public class User {
     private String firstName;
     @Column(length = 25, nullable = false)
     private String secondName;
-    @Column(length = 25, nullable = false)
+    @Column(length = 25, nullable = false, unique = true)
     private String username;
     @Column(length = 25, nullable = false)
     private String password;
@@ -34,7 +34,19 @@ public class User {
     private Status status;
     @Column(nullable = false, columnDefinition = "int(1) default 0")
     private Role role;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
 
+    public User(Long id, String username, String password, String email) {
+        this.Id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public User(Long id, String username, String password, String email, String firstName, String secondName) {
+        this(id, username, password, email);
+        this.firstName = firstName;
+        this.secondName = secondName;
+    }
 }

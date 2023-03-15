@@ -42,10 +42,9 @@ public class ClientsController {
 
     @GetMapping("/clients")
     String load(Model model) {
-        printInfo("CLIENTS PAGE");
         List<Client> clientList = clientService.findAll();
 
-        String[] genders = Gender.getNames(Gender.class);
+        String[] genders = Gender.getNames();
         model.addAttribute("clients", clientList);
         model.addAttribute("genders", genders);
 
@@ -55,10 +54,9 @@ public class ClientsController {
 
     @GetMapping("/clients/edit")
     String edit(Model model, @RequestParam("id") Integer id) {
-        printInfo("EDIT CLIENT PAGE");
         Client client = clientService.findById(id);
 
-        String[] genders = Gender.getNames(Gender.class);
+        String[] genders = Gender.getNames();
         model.addAttribute("client", client);
         model.addAttribute("address", (client.getAddress() == null ? new Address() : client.getAddress()));
         model.addAttribute("genders", genders);

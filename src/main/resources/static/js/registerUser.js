@@ -47,7 +47,7 @@ console.log(JSON.stringify(user));
                     }
                 },
                 error: (xl, er, errMsg) => {
-                    alert(errMsg)
+                    alert(er)
                 }
             })
         }

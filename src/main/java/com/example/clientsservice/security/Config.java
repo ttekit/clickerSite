@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class Config {
@@ -50,8 +51,42 @@ public class Config {
                 customizer.debug(false)
                         .ignoring()
                         .antMatchers("/css/**")
-                        .antMatchers("/registration")
-                        .mvcMatchers(HttpMethod.POST, "/registration");
+                        .antMatchers("/register")
+                        .antMatchers("/js/registerUser.js")
+                        .mvcMatchers(HttpMethod.POST, "/register")
+                        .mvcMatchers(HttpMethod.POST, "/user/submitRegister");
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity secur) throws Exception {
+
+        secur.authorizeRequests()
+                .antMatchers("/error", "/register")
+                .permitAll()
+                .antMatchers(
+                        "/clients"
+                )
+                .authenticated()
+                .antMatchers("/users",
+                        "/user/updateUser"
+                )
+                .hasAuthority(
+                        Role.ARCHITECTOR.name()
+                )
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/loginAction")
+                .defaultSuccessUrl("/")
+                .and()
+                .logout()
+ //               .logoutUrl("j_spring_security_logout")
+                .logoutSuccessUrl("/login")
+                .and()
+                .csrf()
+                .disable()
+        ;
+        return secur.build();
     }
 
 }

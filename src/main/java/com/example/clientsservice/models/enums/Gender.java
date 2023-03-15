@@ -10,7 +10,7 @@ public enum Gender {
     CAT,
     IDE;
 
-    public static String[] getNames(Class<? extends Enum<?>> e) {
-        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
+    public static String[] getNames() {
+        return Arrays.stream(Gender.class.getEnumConstants()).map(Enum::name).toArray(String[]::new);
     }
 }

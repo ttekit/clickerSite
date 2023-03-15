@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserDetailImpl implements UserDetails {
@@ -20,8 +22,11 @@ public class UserDetailImpl implements UserDetails {
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(Role.values())
-                .map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toSet());
+//        return Arrays.stream(Role.values())
+//                .map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toSet());
+//        return Arrays.stream(Role.values())
+//                .map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toSet());
+        return new HashSet<>(List.of(new SimpleGrantedAuthority(user.getRole().name())));
     }
 
     @Override

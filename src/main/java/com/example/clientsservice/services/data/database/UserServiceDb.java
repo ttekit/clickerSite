@@ -19,12 +19,12 @@ public class UserServiceDb implements UserService {
     }
 
     @Override
-    public User findById(Integer id) {
+    public User findById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
 
