@@ -42,36 +42,6 @@ public class UserController {
         return "/user/main";
     }
 
-    @PostMapping("/user/submitRegister")
-    private String submitRegister(@RequestBody String str, BCryptPasswordEncoder encoder) {
-        Gson gson = new Gson();
-        User user = gson.fromJson(str, User.class);
-        user.setRole(Role.USER);
-        user.setStatus(Status.CREATED);
-        user.setPassword(encoder.encode(user.getPassword()));
-        printInFixColor(user);
-
-        userService.save(user);
-        return "redirect:/";
-    }
-    @PostMapping("/user/updateUser")
-    private String updateUser(@RequestBody String str, BCryptPasswordEncoder encoder) {
-        Gson gson = new Gson();
-        User userUpdate = gson.fromJson(str, User.class);
-        User user = userService.findById(userUpdate.getId());
-        if(Objects.equals(userUpdate.getPassword(), "")){
-            userUpdate.setPassword(user.getPassword());
-        }
-        else{
-            userUpdate.setPassword(encoder.encode(userUpdate.getPassword()));
-        }
-        if(!user.equals(userUpdate)){
-            userService.save(userUpdate);
-        }
-        printInFixColor(userUpdate);
-        return "redirect:/";
-    }
-
     @GetMapping("/user/ban")
     private String banUser(@RequestParam Long id){
         userService.deleteById(id);

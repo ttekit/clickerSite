@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
     @GetMapping("/")
     String load(){
-        return "redirect:/clients";
+        return "main/index";
     }
 }

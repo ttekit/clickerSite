@@ -13,7 +13,7 @@ window.addEventListener("load", ()=>{
         user.status = data.find("select[name='status'] option:selected").text()
 
         $.ajax({
-            url: "/user/updateUser",
+            url: "/rest/user/updateUser",
             method: "post",
             contentType: "application/json",
             data: JSON.stringify(user),

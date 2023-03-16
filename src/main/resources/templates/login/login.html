@@ -3,73 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <th:block th:replace="components/head.html :: head"></th:block>
+
 </head>
 <body>
+<div th:replace="components/header.html :: header"></div>
 <!-- Section: Design Block -->
 <section class="text-center text-lg-start">
-  <style>
-    .cascading-right {
-      margin-right: -50px;
-    }
-
-    @media (max-width: 991.98px) {
-      .cascading-right {
-        margin-right: 0;
-      }
-    }
-  </style>
-
-  <!-- Jumbotron -->
-  <div class="container py-4">
-    <div class="row g-0 align-items-center">
-      <div class="col-lg-6 mb-5 mb-lg-0">
-        <div class="card cascading-right" style="
-            background: hsla(0, 0%, 100%, 0.55);
-            backdrop-filter: blur(30px);
-            ">
-          <div class="card-body p-5 shadow-5 text-center">
-            <h2 class="fw-bold mb-5">Sign up now</h2>
-            <form method="post" th:action="@{/loginAction}">
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="text" id="form3Example3" class="form-control" name="username"/>
-                <label class="form-label" for="form3Example3">Username</label>
-              </div>
-
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" class="form-control" name="password"/>
-                <label class="form-label" for="form3Example4">Password</label>
-              </div>
+  <!-- Masthead-->
+  <header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+      <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-8 align-self-end">
+          <h1 class="text-white font-weight-bold">Login</h1>
+          <hr class="divider" />
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+          <form method="post" th:action="@{/loginAction}">
+            <!-- Username -->
+            <div class="form-floating mb-3">
+              <input class="form-control" id="name" name="username" type="text" placeholder="Enter your username..."/>
+              <label for="name">Username</label>
+            </div>
+            <!-- Password input -->
+            <div class="form-floating mb-3">
+              <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password..."/>
+              <label for="password">Password</label>
+            </div>
 
 
-              <!-- Submit button -->
-              <button type="submit" class="btn btn-primary btn-block mb-4">
+            <!-- Submit button -->
+            <div class="d-grid m-3">
+              <button class="btn btn-primary btn-xl" id="submitButton" type="submit">
                 Sign up
               </button>
-              <a href="/register" class="btn btn-primary btn-block mb-4">
-                  Register now
-              </a>
+            </div>
+
+            <a href="/register" class="m-3 btn btn-primary btn-xl">
+              Register now
+            </a>
 
 
-            </form>
-          </div>
+          </form>
         </div>
       </div>
-
-      <div class="col-lg-6 mb-5 mb-lg-0">
-        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4"
-             alt="" />
-      </div>
     </div>
-  </div>
-  <!-- Jumbotron -->
+  </header>
 </section>
-<!-- Section: Design Block -->
 
 <div th:replace="components/scripts.html :: scripts"></div>
-
 </body>
 </html>

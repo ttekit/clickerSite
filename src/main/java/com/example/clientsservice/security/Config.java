@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
 
 @Configuration
 public class Config {
@@ -64,7 +66,10 @@ public class Config {
                 .antMatchers("/error", "/register")
                 .permitAll()
                 .antMatchers(
-                        "/clients"
+                        "/clients",
+                        "/accounts",
+                        "/phones",
+                        "/addresses"
                 )
                 .authenticated()
                 .antMatchers("/users",
